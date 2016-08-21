@@ -1,32 +1,28 @@
+
 module.exports = {
-    entry: __dirname + '/app/app.js',
-    devtool: 'source-map',
+    entry:'./App',
     output: {
-        path: __dirname,
-        filename: 'bundle.js'
+        path:'',
+        filename:'bundle.js'
     },
+
     devServer: {
-        contentBase: __dirname,
+        port: 3333,
+        contentBase: '',
         colors: true,
         historyApiFallback: true,
         inline: true
     },
+
     module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            exclude: /(node_modules)/,
-            loader: "babel",
-            query: {
-                presets: ["es2015", "stage-1", "react"]
+        loaders: [
+            {
+                test:/\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
             }
-        },
-        {
-            test: /\.json$/,
-            loader: 'json'
-        },
-        {
-            test: /\.css$/,
-            loader: 'style!css'
-        }]
+        ]
     }
-};
+
+
+}
