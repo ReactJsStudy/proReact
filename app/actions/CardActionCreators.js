@@ -83,7 +83,8 @@ const CardActionCreators = {
 					type: CONST.ReceiveDeleteCard,
 					success: false,
 					cardId,
-					error})
+					error
+				})
 			)
 		}
 	},
@@ -133,15 +134,22 @@ const CardActionCreators = {
 	},
 	toggleCardDetails(cardId) {
 		return {
-			type: CONST.ToggleCardDetails, cardId }
+			type: CONST.ToggleCardDetails,
+			cardId
+		}
 	},
 	createDraft(card) {
 		return {
-			type: CONST.CreateDraft, card }
+			type: CONST.CreateDraft,
+			card
+		}
 	},
 	updateDraft(field, value) {
 		return {
-			type: CONST.UpdateDraft, field, value }
+			type: CONST.UpdateDraft,
+			field,
+			value
+		}
 	}
 }
 

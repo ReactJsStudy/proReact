@@ -7,7 +7,7 @@ const TaskActionCreators = {
 			dispatch({ type: CONST.RequestCreateTask, cardId, task })
 			kanbanAPI.addTask(cardId, task).then(
 				receivedNewTask => dispatch({
-					type: CONST.RequestCreateTask,
+					type: CONST.ReceiveCreateTask,
 					success: true,
 					cardId,
 					task: receivedNewTask,

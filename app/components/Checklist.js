@@ -7,7 +7,7 @@ class Checklist extends Component {
         if(e.key === 'Enter'){
             const { addTask, cardId } = this.props
             const newTask = { id: Date.now(), name: e.target.value, done: false }
-            addTask(cardId, netTask)
+            addTask(cardId, newTask)
             e.target.value = ''
         }
     }

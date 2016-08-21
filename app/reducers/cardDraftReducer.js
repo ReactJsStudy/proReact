@@ -12,25 +12,19 @@ const defaultDraftCard = () => {
 	}
 }
 
-const cardDraftReducer = (
-	state = defaultDraftCard(),
-	action
-) => {
-	switch(action.type) {
-		case CONST.CreateDraft:
-			if(action.card) {
-				return update(state, {
-					$set: action.card
-				})
+const cardDraftReducer = {
+	[CONST.CreateDraft]: (state, {card}) => {
+		return card ? update(state, {
+			$set: card
+		}) : defaultDraftCard()
+	},
+	[CONST.UpdateDraft]: (state, {field, value}) => {
+		return update(state, {
+			[field]: {
+				$set: value
 			}
-			return defaultDraftCard()
-		case CONST.UpdateDraft:
-			return update(state, {
-				[action.field]: {
-					$set: action.value
-				}
-			})
-		default: return state
+		})
 	}
 }
-export default cardDraftReducer
+export default (state = defaultDraftCard(), action) =>
+	cardDraftReducer[action.type] ? cardDraftReducer[action.type](state, action) : state

@@ -1,5 +1,8 @@
 module.exports = {
-    entry: __dirname + '/app/app.js',
+    entry: [
+        'babel-polyfill',
+        __dirname + '/app/app.js'
+    ],
     devtool: 'source-map',
     output: {
         path: __dirname,

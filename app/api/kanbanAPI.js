@@ -1,5 +1,4 @@
 import axios from 'axios'
-import 'babel-polyfill'
 
 axios.defaults.baseURL = 'http://kanbanapi.pro-react.com'
 axios.defaults.headers.common['Authorization'] = 'gomugom'
@@ -20,6 +19,10 @@ const kanbanAPI = {
 	},
 	deleteCard(cardId) {
 		return axios.delete(`/cards/${cardId}`)
+		.then(res => res.data)
+	},
+	addTask(cardId, task) {
+		return axios.post(`/cards/${cardId}/tasks`, task)
 		.then(res => res.data)
 	},
 	deleteTask(cardId, task) {
