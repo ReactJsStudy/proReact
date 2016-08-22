@@ -2,11 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ActionCreators from '../actions/ActionCreators';
 
+import { bindActionCreators } from 'redux';
+
 class CheckList extends Component {
     checkInputKeyPress(evt) {
         if (evt.key === 'Enter') {
             let newTask = {id:Date.now(), name:evt.target.value, done:false};
-            this.props.addTask(this.props.cardId, newTask);
+            this.props.actions.addTask(this.props.cardId, newTask);
             evt.target.value = '';
         }
     }
@@ -18,11 +20,11 @@ class CheckList extends Component {
                 type="checkbox"
                 defaultChecked={task.done}
                 onChange={
-                this.props.toggleTask.bind(null, this.props.cardId, task, taskIndex)
+                this.props.actions.toggleTask.bind(null, this.props.cardId, task, taskIndex)
                 }/>
                 {task.name}{' '}
                 <a href="#" className="checklist_task--remove" onClick={
-                    this.props.deleteTask.bind(null, this.props.cardId,
+                    this.props.actions.deleteTask.bind(null, this.props.cardId,
                         task, taskIndex)} />
             </li>
             ));
@@ -41,17 +43,13 @@ class CheckList extends Component {
 CheckList.propTypes = {
     cardId: PropTypes.number,
     tasks: PropTypes.arrayOf(PropTypes.object),
-    addTask: PropTypes.func.isRequired,
-    toggleTask: PropTypes.func.isRequired,
-    deleteTask: PropTypes.func.isRequired
+    actions: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-    addTask: (cardId, newTask) => dispatch(ActionCreators.addTask(cardId, newTask)),
-    toggleTask: (cardId, task, taskIndex) => dispatch(ActionCreators.toggleTask(cardId, task, taskIndex)),
-    deleteTask: (cardId, task, taskIndex) => dispatch(ActionCreators.deleteTask(cardId, task, taskIndex))
+    actions: bindActionCreators(ActionCreators, dispatch)
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(CheckList);

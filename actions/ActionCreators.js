@@ -26,8 +26,6 @@ import {getCard, getCardIndex} from '../reducer/rootReducer';
 import Immutable from 'immutable';
 
 let ActionCreators = {
-<<<<<<< Updated upstream
-=======
     fetchCards() {
         return (dispatch) => {
             dispatch({ type:FETCH_CARDS_SUCCESS });
@@ -37,10 +35,8 @@ let ActionCreators = {
         )
         }
     },
->>>>>>> Stashed changes
 
 
-<<<<<<< Updated upstream
   fetchCards() {
     return (dispatch) => {
       dispatch({ type: REQUEST_CARDS });
@@ -151,16 +147,4 @@ let ActionCreators = {
 };
 
 export default ActionCreators;
-=======
-           return (dispatch) => {
-            dispatch({type:CREATE_CARD_SUCCESS});
-            KanbanAPI.addCard().then(
-                (card) => dispatch({type:CREATE_CARD_SUCCESS, success:true,card}),
-                (error) => dispatch({type:CREATE_CARD_ERROR, success:false})
-                )
-           }
-        }
-
-}
->>>>>>> Stashed changes
 

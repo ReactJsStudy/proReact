@@ -6,10 +6,12 @@ import { Link } from 'react-router'
 import CardList from './CardList';
 import ActionCreators from '../actions/ActionCreators'
 
+import  { bindActionCreators } from 'redux'
+
 class KanbanBoard extends Component {
     componentDidMount() {
         //init cards
-        this.props.fetchCards()
+        this.props.actions.fetchCards()
     }
 
     render() {
@@ -42,7 +44,7 @@ class KanbanBoard extends Component {
 }
 
 KanbanBoard.propTypes = {
-    fetchCards: PropTypes.func.isRequired,
+    actions: PropTypes.object.isRequired,
     cards: PropTypes.arrayOf(PropTypes.object)
 }
 
@@ -54,7 +56,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchCards: () => dispatch(ActionCreators.fetchCards())
+  actions: bindActionCreators(ActionCreators, dispatch)
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(KanbanWithDragDrop)
